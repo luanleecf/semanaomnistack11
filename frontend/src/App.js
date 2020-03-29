@@ -7,7 +7,7 @@ import Routes from './routes';
 //JSX >> Javascript e XML
 function App() {
     return ( 
-   <Routes />   
+        <Routes />   
     );
 }
 export default App;
