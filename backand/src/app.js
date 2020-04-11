@@ -9,5 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 app.use(errors());
+app.use((error, req, res, next) => {
+    res.status(error.httpStatusCode).json
+});
 
 module.exports = app;
