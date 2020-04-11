@@ -32,7 +32,6 @@ Adiconado testes de integração e unitário: Dependencias - jest, cross-env, su
 Hospedagem de aplicações.
 
 Front-end:
-
 Eu mesmo alterei as informações exibidas em telas para o usuário usando a dependência SweetAlert2 https://sweetalert2.github.io/#download
 
 
