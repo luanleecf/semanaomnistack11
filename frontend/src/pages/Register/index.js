@@ -38,13 +38,13 @@ export default function Register() {
             const response = await api.post('ongs', data);
             
 
-            MySwal.fire({
-                icon: 'success',
-                title: <p>Cadastrado com sucesso</p>,
-                footer: 'Copyright 2020',
-                onOpen: () => {
-                  
-                  MySwal.clickConfirm()
+                MySwal.fire({
+                    icon: 'success',
+                    title: <p>Cadastrado com sucesso</p>,
+                    footer: 'Copyright 2020',
+                    onOpen: () => {
+                    
+                    MySwal.clickConfirm()
                   
                 }
               }).then(() => {
