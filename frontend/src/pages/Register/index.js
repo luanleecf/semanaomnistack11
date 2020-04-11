@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 import api from '../../services/api';
 
 import './styles.css';
@@ -18,7 +21,6 @@ export default function Register() {
 
     const history = useHistory();
 
-
     async function handleRegister(e) {
         e.preventDefault();
 
@@ -30,14 +32,34 @@ export default function Register() {
             uf
         };
         
+        const MySwal = withReactContent(Swal);
+        
         try {
             const response = await api.post('ongs', data);
+            
 
-            alert(`Seu ID de acesso: ${response.data.id}`);
+            MySwal.fire({
+                icon: 'success',
+                title: <p>Cadastrado com sucesso</p>,
+                footer: 'Copyright 2020',
+                onOpen: () => {
+                  
+                  MySwal.clickConfirm()
+                  
+                }
+              }).then(() => {
+                return MySwal.fire(<p>Seu ID de acesso: {response.data.id}</p>);
+              })
 
             history.push('/');
         } catch (err) {
-            alert('Erro no cadastro, tente novamente.');
+            
+            MySwal.fire({
+                icon: 'error',
+                title: 'Erro no cadastro.',
+                text: `Campos incorrentos, preencha corretamente.`,
+              })
+ 
         }        
     }
 
@@ -51,7 +73,7 @@ export default function Register() {
                     <p>Faça seu cadastro, entre na plataforma e ajude a encontrar os casos da sua ONG</p>
                     <Link className="back-link" to="/">
                     <FiArrowLeft size={16} color="#E02041" />
-                    Não tenho cadastro          
+                    Já possuo cadastro
                     </Link>
                 </section>
                 <form onSubmit={handleRegister}>

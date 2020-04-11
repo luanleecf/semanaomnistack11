@@ -4,6 +4,9 @@ import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
@@ -16,6 +19,8 @@ export default function Logon(){
     async function handleLogin(e){
         e.preventDefault();
 
+        const MySwal = withReactContent(Swal);
+
         try{
             const response = await api.post('sessions', { id } );
             
@@ -24,7 +29,11 @@ export default function Logon(){
 
             history.push('/profile');
         } catch (err) {
-                alert('Falha no login, tente novamente.')
+            MySwal.fire({
+                icon: 'error',
+                title: 'Falha no login',
+                text: `ID incorreto, preencha novamente.`,
+              })
         }
     }
 

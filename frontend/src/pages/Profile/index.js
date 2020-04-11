@@ -4,6 +4,9 @@ import { FiPower, FiTrash2 } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 import api from '../../services/api';
 
 export default function Profile() {
@@ -39,10 +42,37 @@ export default function Profile() {
         }
     }
 
-    function hundleLogout(){
-        localStorage.clear();
+    async function hundleLogout(){
+        const MySwal = withReactContent(Swal);
 
-        history.push('/');
+        MySwal.fire({
+            title: 'Gostaria de fazer sair?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#e02041',
+            confirmButtonText: 'Sim, gostaria.',
+            cancelButtonText: 'Não, quero ficar logado.'
+          }).then((result) => {
+            if (result.value) {
+              MySwal.fire(
+                `Deslogado com sucesso!${history.push('/')}`,
+                'Em algum lugar um animalzinho precisa de você.',
+                'success'
+              )  
+            } else if (
+                result.dismiss === MySwal.DismissReason.cancel
+            ) {
+              MySwal.fire(
+                'Obrigado por ficar.',
+                'Continue salvando o dia :)',
+                'success'
+              )
+            }
+          })
+
+        localStorage.clear();   
+  
     }
 
     return (

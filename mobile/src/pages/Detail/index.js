@@ -19,15 +19,15 @@ export default function Detail() {
     }
 
     function sendMail() {
-        MailComposer.composeAsync({
-            subject: `Heroi do caso: ${incident.title}`,
-            recipients: [incident.email],
-            body: message,
-        })
+         MailComposer.composeAsync({
+           subject: `Heroi do caso: ${incident.title}`,
+           recipients: [incident.email],
+           body: message,
+       })
     }
 
     function sendWhatsapp() {
-        Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`);
+        Linking.openURL(`whatsapp://send?phone=+55${incident.whatsapp}&text=${message}`);
 
     }
 
