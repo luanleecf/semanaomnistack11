@@ -44,7 +44,7 @@ export default function Register() {
                     footer: 'Copyright 2020',
                     onOpen: () => {
                     
-                    MySwal.clickConfirm()
+                MySwal.clickConfirm()
                   
                 }
               }).then(() => {
