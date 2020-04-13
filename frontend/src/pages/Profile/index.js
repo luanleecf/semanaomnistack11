@@ -55,10 +55,12 @@ export default function Profile() {
             cancelButtonText: 'Não, quero ficar logado.'
           }).then((result) => {
             if (result.value) {
-              MySwal.fire(
-                `Deslogado com sucesso!${history.push('/')}`,
+              MySwal.fire(                
+                `Deslogado com sucesso!`,
                 'Em algum lugar um animalzinho precisa de você.',
-                'success'
+                'success',
+                    `${history.push('/')}`
+
               )  
             } else if (
                 result.dismiss === MySwal.DismissReason.cancel
@@ -70,7 +72,6 @@ export default function Profile() {
               )
             }
           })
-
         localStorage.clear();   
   
     }
